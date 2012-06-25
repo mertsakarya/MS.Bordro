@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9FBD1BC3-06FF-4CBE-87FD-6375D791C8B9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MS.Bordro.Infrastructure</RootNamespace>
+    <AssemblyName>MS.Bordro.Infrastructure</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AspNetMvc.4.0.20126.16343\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\AspNetWebPages.Core.2.0.20126.16343\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Attributes\BordroFieldAttribute.cs" />
+    <Compile Include="Attributes\BordroFilterAttribute.cs" />
+    <Compile Include="Attributes\BordroLookupListAttribute.cs" />
+    <Compile Include="Attributes\BordroRangeAttribute.cs" />
+    <Compile Include="Attributes\BordroRegularExpressionAttribute.cs" />
+    <Compile Include="Attributes\BordroRequiredAttribute.cs" />
+    <Compile Include="Attributes\BordroStringLengthAttribute.cs" />
+    <Compile Include="Cache\CacheObject.cs" />
+    <Compile Include="Cache\IBordroGlobalCacheContext.cs" />
+    <Compile Include="Cache\BordroGlobalBaseCacheContext.cs" />
+    <Compile Include="Cache\BordroGlobalMemoryCacheContext.cs" />
+    <Compile Include="ConfigParser.cs" />
+    <Compile Include="Exceptions\BordroException.cs" />
+    <Compile Include="Exceptions\Resources\BordroConfigurationException.cs" />
+    <Compile Include="Exceptions\Resources\BordroResourceException.cs" />
+    <Compile Include="Exceptions\Resources\BordroResourceLookupException.cs" />
+    <Compile Include="Exceptions\Web\BordroNotAllowedException.cs" />
+    <Compile Include="BordroContextInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReloadResources.cs" />
+    <Compile Include="ResourceManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MS.Bordro.Domain\MS.Bordro.Domain.csproj">
+      <Project>{D3EBAE71-3A79-4353-8798-B8EBC1FF0C3A}</Project>
+      <Name>MS.Bordro.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Bordro.Enumerations\MS.Bordro.Enumerations.csproj">
+      <Project>{2EA764CF-D101-41BC-8D75-1C86A1C259E4}</Project>
+      <Name>MS.Bordro.Enumerations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Bordro.Interfaces.Repositories\MS.Bordro.Interfaces.Repositories.csproj">
+      <Project>{0CEC999B-FEE7-48FA-B8EA-0A3FC3004107}</Project>
+      <Name>MS.Bordro.Interfaces.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Bordro.Interfaces.Services\MS.Bordro.Interfaces.Services.csproj">
+      <Project>{CF3E3A86-5ED9-4998-B1C0-0199895AF539}</Project>
+      <Name>MS.Bordro.Interfaces.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Bordro.Repositories.DB\MS.Bordro.Repositories.DB.csproj">
+      <Project>{1009F7D3-2F1C-4161-B6B7-E0C295D4DFA6}</Project>
+      <Name>MS.Bordro.Repositories.DB</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Exceptions\Services\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,38 @@
+<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension=".cshtml" #>
+<#@ assembly name="Microsoft.CSharp" #>
+<#
+    MvcTextTemplateHost mvcHost = (MvcTextTemplateHost)(Host);
+    var modelTypeName = mvcHost.ModelType.Name;
+    var modelTypeNamespace = mvcHost.ModelType.Namespace;
+    var contextName = mvcHost.ExtendedProperties.ContextName;
+    var modelTypePluralized = mvcHost.ExtendedProperties.ModelTypePluralized;
+    var contextControllerTypeFullName = mvcHost.ExtendedProperties.ContextControllerTypeFullName;
+#>
+@{
+    ViewBag.Title = "<#= modelTypePluralized #>";
+    Layout = "~/Views/Shared/_SpaLayout.cshtml";
+}
+
+<div data-bind="visible: editing<#= modelTypeName #>">
+    @Html.Partial("_Editor")
+</div>
+
+<div data-bind="visible: !editing<#= modelTypeName #>()">
+    @Html.Partial("_Grid")
+</div>
+
+<div class="message-info message-success" data-bind="flash: { text: successMessage, duration: 5000 }"></div>
+<div class="message-info message-error" data-bind="flash: { text: errorMessage, duration: 20000 }"></div>
+
+<script type="text/javascript" src="@Url.Content("~/Scripts/<#= modelTypePluralized #>ViewModel.js")"></script>
+<script type="text/javascript">
+    $(function () {
+        upshot.metadata(@(Html.Metadata<<#= contextControllerTypeFullName #>>()));
+
+        var viewModel = new MyApp.<#= modelTypePluralized #>ViewModel({
+            serviceUrl: "@Url.Content("~/api/<#= contextName #>")"
+        });
+        ko.applyBindings(viewModel);
+    });
+</script>
