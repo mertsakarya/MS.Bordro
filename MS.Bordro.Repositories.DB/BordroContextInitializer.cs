@@ -2,7 +2,7 @@
 
 namespace MS.Bordro.Repositories.DB
 {
-    public class BordroContextInitializer : DropCreateDatabaseIfModelChanges<BordroDbContext> //CreateDatabaseIfNotExists<BordroDbContext> //DropCreateDatabaseIfModelChanges<BordroDbContext> //DropCreateDatabaseAlways<BordroContext>// DropCreateDatabaseIfModelChanges<BordroContext>
+    public class BordroContextInitializer : CreateDatabaseIfNotExists<BordroDbContext> //CreateDatabaseIfNotExists<BordroDbContext> //DropCreateDatabaseIfModelChanges<BordroDbContext> //DropCreateDatabaseAlways<BordroContext>// DropCreateDatabaseIfModelChanges<BordroContext>
     {
         private readonly string _configurationDataFilename;
 
