@@ -1,40 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using MS.Bordro.Domain.Entities.BaseEntities;
-using MS.Bordro.Enumerations;
-using Newtonsoft.Json;
 
 namespace MS.Bordro.Domain.Entities
 {
     public class Company : BaseGuidModel
     {
-        public byte Gender { get; set; }
-
-        [Required]
-        [MinLength(3), MaxLength(64)]
-        public string UserName { get; set; }
-        public string FacebookUid { get; set; }
+        public Company()
+        {
+            Locations = new List<CompanyLocation>();
+            Attributes = new List<CompanyAttribute>();
+        }
 
         [Required]
         [MinLength(7), MaxLength(64)]
-        public string Email { get; set; }
+        public string Name { get; set; }
 
-        public bool EmailValidated { get; set; }
-        
-        public string Phone { get; set; }
+        public List<CompanyLocation> Locations { get; set; }
 
-        [Required]
-        [MinLength(6), MaxLength(14)]
-        [JsonIgnore]
-        public string Password { get; set; }
-
-        public DateTime Expires { get; set; }
-        public byte MembershipType { get; set; }
-
+        public IList<CompanyAttribute> Attributes { get; set; }
 
         public override string ToString()
         {
-            return base.ToString() + String.Format(" | FacebookUid: {0} | Gender: {1} | UserName: {2} | Email: {3} | EmailValidated: {7} | Phone: {4} | Password: {5} | Expires: {6}", FacebookUid, Enum.GetName(typeof(Sex), Gender), UserName, Email, Phone, Password, Expires, EmailValidated);
+            var str = base.ToString() + String.Format(" | Name: {0}", Name);
+            if (Locations != null && Locations.Count > 0) {
+                str += "\r\nLocations: [\r\n";
+                str = Locations.Aggregate(str, (current, item) => current + ("\t" + item.ToString() + "\r\n"));
+                str += "]";
+            }
+            if (Attributes != null && Attributes.Count > 0) {
+                str += "\r\nAttributes: [\r\n";
+                str = Attributes.Aggregate(str, (current, item) => current + ("\t" + item.ToString() + "\r\n"));
+                str += "]";
+            }
+            return str;
         }
 
     }

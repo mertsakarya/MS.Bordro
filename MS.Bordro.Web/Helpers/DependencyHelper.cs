@@ -6,7 +6,6 @@ using Autofac;
 using Autofac.Integration.Mvc;
 using MS.Bordro.Infrastructure.Cache;
 using MS.Bordro.Interfaces.Repositories;
-using MS.Bordro.Interfaces.Respositories;
 using MS.Bordro.Interfaces.Services;
 using MS.Bordro.Repositories.DB;
 using MS.Bordro.Services;
@@ -30,6 +29,7 @@ namespace MS.Bordro.Web.Helpers
 
             builder.RegisterType<ResourceService>().As<IResourceService>().InstancePerHttpRequest();
 
+            builder.RegisterType<UserRepositoryDB>().As<IUserRepositoryDB>().InstancePerHttpRequest();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();
             var cacheProviderText = ConfigurationManager.AppSettings["CacheProvider"];
             if (!String.IsNullOrWhiteSpace(cacheProviderText)) {
@@ -49,7 +49,6 @@ namespace MS.Bordro.Web.Helpers
                 builder.RegisterType<BordroGlobalMemoryCacheContext>().As<IBordroGlobalCacheContext>().InstancePerHttpRequest();
             }
             
-            builder.RegisterType<UserRepositoryDB>().As<IUserRepositoryDB>().InstancePerHttpRequest();
             
 
             Container = builder.Build();

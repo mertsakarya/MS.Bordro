@@ -6,7 +6,6 @@ using System.Linq;
 using System.Linq.Expressions;
 using MS.Bordro.Domain.Entities.BaseEntities;
 using MS.Bordro.Interfaces.Repositories;
-using MS.Bordro.Interfaces.Respositories;
 using NLog;
 
 namespace MS.Bordro.Repositories.DB.Base

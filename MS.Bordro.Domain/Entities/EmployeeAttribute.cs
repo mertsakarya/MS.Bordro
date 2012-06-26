@@ -6,35 +6,22 @@ using Newtonsoft.Json;
 
 namespace MS.Bordro.Domain.Entities
 {
-    public class EmployeeAttribute : BaseGuidModel
+    public class EmployeeAttribute : BaseModel
     {
-        public byte Gender { get; set; }
-
-        [Required]
-        [MinLength(3), MaxLength(64)]
-        public string UserName { get; set; }
-        public string FacebookUid { get; set; }
-
-        [Required]
-        [MinLength(7), MaxLength(64)]
-        public string Email { get; set; }
-
-        public bool EmailValidated { get; set; }
-        
-        public string Phone { get; set; }
-
-        [Required]
-        [MinLength(6), MaxLength(14)]
         [JsonIgnore]
-        public string Password { get; set; }
+        [Required]
+        public long EmployeeId { get; set; }
 
-        public DateTime Expires { get; set; }
-        public byte MembershipType { get; set; }
+        [JsonIgnore]
+        public Company Employee { get; set; }
+
+        public String Name { get; set; }
+        public String Value { get; set; }
 
 
         public override string ToString()
         {
-            return base.ToString() + String.Format(" | FacebookUid: {0} | Gender: {1} | UserName: {2} | Email: {3} | EmailValidated: {7} | Phone: {4} | Password: {5} | Expires: {6}", FacebookUid, Enum.GetName(typeof(Sex), Gender), UserName, Email, Phone, Password, Expires, EmailValidated);
+            return base.ToString() + String.Format(" | Name: {0} | Value: {1}", Name, Value);
         }
 
     }

@@ -6,8 +6,22 @@ namespace MS.Bordro.Repositories.DB
 
     public class BordroDbContext : DbContext, IBordroDbContext
     {
+        public DbSet<Company> Companies { get; set; }
+        public DbSet<CompanyAttribute> CompanyAttributes { get; set; }
+        public DbSet<CompanyLocation> CompanyLocations { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<EmployeeAttribute> EmployeeAttributes { get; set; }
+        public DbSet<RouteInformation> RouteInformations { get; set; }
+        public DbSet<SpecialDay> SpecialDays { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Worker> Workers { get; set; }
+        public DbSet<WorkRequest> WorkRequest { get; set; }
+
+        public DbSet<ConfigurationData> ConfigurationDatas { get; set; }
+        public DbSet<Resource> Resources { get; set; }
+        public DbSet<ResourceLookup> ResourceLookups { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

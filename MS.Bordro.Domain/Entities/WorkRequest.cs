@@ -1,40 +1,51 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using MS.Bordro.Domain.Entities.BaseEntities;
-using MS.Bordro.Enumerations;
-using Newtonsoft.Json;
 
 namespace MS.Bordro.Domain.Entities
 {
     public class WorkRequest : BaseGuidModel
     {
-        public byte Gender { get; set; }
+        public WorkRequest() { Workers = new List<Worker>(); }
 
         [Required]
-        [MinLength(3), MaxLength(64)]
-        public string UserName { get; set; }
-        public string FacebookUid { get; set; }
+        public long CompanyId { get; set; }
+
+        public Company Company { get; set; }
 
         [Required]
-        [MinLength(7), MaxLength(64)]
-        public string Email { get; set; }
+        public long CompanyLocationId { get; set; }
 
-        public bool EmailValidated { get; set; }
-        
-        public string Phone { get; set; }
+        public CompanyLocation CompanyLocation { get; set; }
 
-        [Required]
-        [MinLength(6), MaxLength(14)]
-        [JsonIgnore]
-        public string Password { get; set; }
+        public DateTime Date { get; set; }
 
-        public DateTime Expires { get; set; }
-        public byte MembershipType { get; set; }
+        public TimeSpan StartTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
+        public string Notes { get; set; }
+
+        public long DepartingId { get; set; }
+        public RouteInformation Departing { get; set; }
+
+        public long ReturningId { get; set; }
+        public RouteInformation Returning { get; set; }
+
+        protected IList<Worker> Workers { get; set; }
 
         public override string ToString()
         {
-            return base.ToString() + String.Format(" | FacebookUid: {0} | Gender: {1} | UserName: {2} | Email: {3} | EmailValidated: {7} | Phone: {4} | Password: {5} | Expires: {6}", FacebookUid, Enum.GetName(typeof(Sex), Gender), UserName, Email, Phone, Password, Expires, EmailValidated);
+            var str = base.ToString() + String.Format(" | CompanyId: {0} | CompanyLocationId: {1} | Date: {2} | StartTime: {3} | EndTime: {4} | Notes: {5}", CompanyId, CompanyLocationId, Date, StartTime, EndTime, Notes);
+            str += String.Format("\r\n\tDeparting: [{0}]", Departing);
+            str += String.Format("\r\n\tReturning: [{0}]", Returning);
+            if (Workers != null && Workers.Count > 0) {
+                str += "\r\nWorkers: [\r\n";
+                str = Workers.Aggregate(str, (current, item) => current + ("\t" + item.ToString() + "\r\n"));
+                str += "]";
+            }
+            return str;
         }
 
     }

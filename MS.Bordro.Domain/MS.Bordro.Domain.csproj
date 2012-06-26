@@ -56,12 +56,15 @@
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\CompanyAttribute.cs" />
     <Compile Include="Entities\ConfigurationData.cs" />
+    <Compile Include="Entities\CompanyLocation.cs" />
+    <Compile Include="Entities\RouteInformation.cs" />
+    <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Entities\EmployeeAttribute.cs" />
     <Compile Include="Entities\Resource.cs" />
     <Compile Include="Entities\ResourceLookup.cs" />
     <Compile Include="Entities\WorkRequest.cs" />
     <Compile Include="Entities\SpecialDay.cs" />
-    <Compile Include="Entities\Work.cs" />
+    <Compile Include="Entities\Worker.cs" />
     <Compile Include="Entities\Employee.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

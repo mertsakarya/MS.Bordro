@@ -1,7 +1,6 @@
 ﻿using System.Linq;
 using MS.Bordro.Domain.Entities;
 using MS.Bordro.Interfaces.Repositories;
-using MS.Bordro.Interfaces.Respositories;
 using MS.Bordro.Repositories.DB.Base;
 
 namespace MS.Bordro.Repositories.DB
