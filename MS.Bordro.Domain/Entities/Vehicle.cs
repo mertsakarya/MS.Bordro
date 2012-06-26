@@ -19,6 +19,7 @@ namespace MS.Bordro.Domain.Entities
         public string Number { get; set; }
         public int Seats { get; set; }
 
+
         public override string ToString()
         {
             var str = base.ToString() + String.Format(" | Name: {0} | Number: {1} | Seats: {2}", Name, Number, Seats);

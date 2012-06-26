@@ -6,10 +6,8 @@ namespace MS.Bordro.Repositories.DB
     public interface IBordroDbContext
     {
         DbSet<Company> Companies { get; set; }
-        DbSet<CompanyAttribute> CompanyAttributes { get; set; }
         DbSet<CompanyLocation> CompanyLocations { get; set; }
         DbSet<Employee> Employees { get; set; }
-        DbSet<EmployeeAttribute> EmployeeAttributes { get; set; }
         DbSet<RouteInformation> RouteInformations { get; set; }
         DbSet<SpecialDay> SpecialDays { get; set; }
         DbSet<User> Users { get; set; }

@@ -1,4 +1,6 @@
 using AutoMapper;
+using MS.Bordro.Domain.Entities;
+using MS.Bordro.Web.Models;
 
 namespace MS.Bordro.Web.Helpers
 {
@@ -7,6 +9,22 @@ namespace MS.Bordro.Web.Helpers
 
         public static void HandleMappings()
         {
+            Mapper.CreateMap<Company, CompanyModel>();
+            Mapper.CreateMap<CompanyLocation, CompanyLocationModel>();
+            Mapper.CreateMap<Employee, EmployeeModel>();
+            Mapper.CreateMap<RouteInformation, RouteInformationModel>();
+            Mapper.CreateMap<Vehicle, VehicleModel>();
+            Mapper.CreateMap<Worker, WorkerModel>();
+            Mapper.CreateMap<WorkRequest, WorkRequestModel>();
+
+            Mapper.CreateMap<CompanyModel, Company>();
+            Mapper.CreateMap<CompanyLocationModel, CompanyLocation>();
+            Mapper.CreateMap<EmployeeModel, Employee>();
+            Mapper.CreateMap<RouteInformationModel, RouteInformation>();
+            Mapper.CreateMap<VehicleModel, Vehicle>();
+            Mapper.CreateMap<WorkerModel, Worker>();
+            Mapper.CreateMap<WorkRequestModel, WorkRequest>();
+
             //Mapper.CreateMap<Profile, ProfileModel>();
             //Mapper.CreateMap<ProfileModel, Profile>()
             //    .ForMember(dest => dest.BreastSize, opt => opt.MapFrom(src => (byte?) src.BreastSize))

@@ -27,11 +27,6 @@ namespace MS.Bordro.Domain.Entities
                 str = Locations.Aggregate(str, (current, item) => current + ("\t" + item.ToString() + "\r\n"));
                 str += "]";
             }
-            if (Attributes != null && Attributes.Count > 0) {
-                str += "\r\nAttributes: [\r\n";
-                str = Attributes.Aggregate(str, (current, item) => current + ("\t" + item.ToString() + "\r\n"));
-                str += "]";
-            }
             return str;
         }
 

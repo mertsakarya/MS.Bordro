@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using MS.Bordro.Domain.Entities.BaseEntities;
 using MS.Bordro.Enumerations;
 
@@ -27,6 +25,10 @@ namespace MS.Bordro.Domain.Entities
 
         public byte Gender { get; set; }
         public byte EmployeeType { get; set; }
+        public byte CalculationType { get; set; }
+
+        public decimal Cost { get; set; }
+        public decimal Sale { get; set; }
 
         public override string ToString()
         {

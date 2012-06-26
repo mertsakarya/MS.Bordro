@@ -28,6 +28,8 @@ namespace MS.Bordro.Web.Helpers
             builder.RegisterType<BordroDbContext>().As<IBordroDbContext>().InstancePerHttpRequest();
 
             builder.RegisterType<ResourceService>().As<IResourceService>().InstancePerHttpRequest();
+            builder.RegisterType<CompanyRepositoryDB>().As<ICompanyRepositoryDB>().InstancePerHttpRequest();
+            builder.RegisterType<CompanyService>().As<ICompanyService>().InstancePerHttpRequest();
 
             builder.RegisterType<UserRepositoryDB>().As<IUserRepositoryDB>().InstancePerHttpRequest();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();

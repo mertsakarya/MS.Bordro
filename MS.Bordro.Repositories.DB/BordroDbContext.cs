@@ -9,10 +9,8 @@ namespace MS.Bordro.Repositories.DB
     {
 
         public DbSet<Company> Companies { get; set; }
-        public DbSet<CompanyAttribute> CompanyAttributes { get; set; }
         public DbSet<CompanyLocation> CompanyLocations { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<EmployeeAttribute> EmployeeAttributes { get; set; }
         public DbSet<RouteInformation> RouteInformations { get; set; }
         public DbSet<SpecialDay> SpecialDays { get; set; }
         public DbSet<User> Users { get; set; }

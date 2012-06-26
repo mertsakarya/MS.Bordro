@@ -12,6 +12,8 @@ namespace MS.Bordro.Domain.Entities
         [Required]
         public string Description { get; set; }
 
+        public decimal Multiplier { get; set; }
+
 
         public override string ToString()
         {

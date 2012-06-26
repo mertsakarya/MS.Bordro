@@ -12,11 +12,16 @@ namespace MS.Bordro.Domain.Entities
         public Employee Employee { get; set; }
 
         public byte Role { get; set; }
+        public byte CalculationType { get; set; }
+        public byte State { get; set; }
 
         public DateTime Date { get; set; }
 
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
+
+        public decimal Cost { get; set; }
+        public decimal Sale { get; set; }
 
         public string Notes { get; set; }
 

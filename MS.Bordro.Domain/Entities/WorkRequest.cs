@@ -33,6 +33,11 @@ namespace MS.Bordro.Domain.Entities
         public long ReturningId { get; set; }
         public RouteInformation Returning { get; set; }
 
+        public decimal Cost { get; set; }
+        public decimal Sale { get; set; }
+
+        public byte State { get; set; }
+
         protected IList<Worker> Workers { get; set; }
 
         public override string ToString()

@@ -1,4 +1,4 @@
-@using ClientDependency.Core
+﻿@using ClientDependency.Core
 @using ClientDependency.Core.Mvc
 <!DOCTYPE html>
 <html lang="en">
@@ -53,7 +53,7 @@
             Html.RequiresJs("FileUpload/locale.js", "Content", 90);
             Html.RequiresJs("FileUpload/main.js", "Content", 99);
         }
-    </head>
+    @(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css").Add("telerik.office2010blue.css").Combined(true).Compress(true)))</head>
     <body>
         <div id="fb-root"></div>
         <header>
@@ -99,5 +99,5 @@
                 </div>
             </div>
         </footer>
-    </body>
+    @(Html.Telerik().ScriptRegistrar().DefaultGroup(group => group.Combined(true)))</body>
 </html>
