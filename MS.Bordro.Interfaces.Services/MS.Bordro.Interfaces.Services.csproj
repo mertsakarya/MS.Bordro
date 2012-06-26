@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="IResourceService.cs" />
     <Compile Include="IUserService.cs" />
+    <Compile Include="IUtilityService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

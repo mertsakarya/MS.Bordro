@@ -4,7 +4,7 @@ using MS.Bordro.Domain.Entities.BaseEntities;
 
 namespace MS.Bordro.Domain.Entities
 {
-    public class RouteInformation : BaseGuidModel
+    public class RouteInformation : BaseModel
     {
         [Required]
         public long EmployeeId { get; set; }

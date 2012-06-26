@@ -11,7 +11,6 @@ namespace MS.Bordro.Domain.Entities
         public Company()
         {
             Locations = new List<CompanyLocation>();
-            Attributes = new List<CompanyAttribute>();
         }
 
         [Required]
@@ -19,8 +18,6 @@ namespace MS.Bordro.Domain.Entities
         public string Name { get; set; }
 
         public List<CompanyLocation> Locations { get; set; }
-
-        public IList<CompanyAttribute> Attributes { get; set; }
 
         public override string ToString()
         {

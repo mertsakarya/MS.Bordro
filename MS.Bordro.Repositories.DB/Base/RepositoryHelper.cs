@@ -50,10 +50,12 @@ namespace MS.Bordro.Repositories.DB.Base
             return context.Set<TEntity>().Remove(entity);
         }
 
-        public static IQueryable<T> Query<T>(IQueryable<T> dbSet, Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeExpressionParams) where T : class
+        public static IQueryable<T> Query<T>(IQueryable<T> dbSet, Expression<Func<T, bool>> filter, bool includeDeleted = false,  params Expression<Func<T, object>>[] includeExpressionParams) where T : BaseModel
         {
             if (includeExpressionParams != null)
                 dbSet = includeExpressionParams.Aggregate(dbSet, (current, expression) => current.Include(expression));
+            if(!includeDeleted) 
+                dbSet = dbSet.Where(p => !p.Deleted);
             if (filter != null)
                 dbSet = dbSet.Where(filter);
             return dbSet;

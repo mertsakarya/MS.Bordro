@@ -1,9 +1,7 @@
 using System;
 using System.Linq.Expressions;
-using MS.Bordro.Domain;
 using MS.Bordro.Domain.Entities.BaseEntities;
 using MS.Bordro.Interfaces.Repositories;
-
 
 namespace MS.Bordro.Repositories.DB.Base
 {
@@ -28,7 +26,7 @@ namespace MS.Bordro.Repositories.DB.Base
         
         public T GetByGuid(Guid guid, params Expression<Func<T, object>>[] includeExpressionParams)
         {
-            return Single(p => p.Guid == guid, includeExpressionParams);
+            return Single(p => p.Guid == guid, false, includeExpressionParams);
         }
     }
 }

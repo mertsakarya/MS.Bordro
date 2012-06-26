@@ -31,6 +31,7 @@ namespace MS.Bordro.Web.Helpers
 
             builder.RegisterType<UserRepositoryDB>().As<IUserRepositoryDB>().InstancePerHttpRequest();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();
+            builder.RegisterType<UtilityService>().As<IUtilityService>().InstancePerHttpRequest();
             var cacheProviderText = ConfigurationManager.AppSettings["CacheProvider"];
             if (!String.IsNullOrWhiteSpace(cacheProviderText)) {
                 switch(cacheProviderText.ToLowerInvariant()) {
@@ -48,9 +49,6 @@ namespace MS.Bordro.Web.Helpers
             } else {
                 builder.RegisterType<BordroGlobalMemoryCacheContext>().As<IBordroGlobalCacheContext>().InstancePerHttpRequest();
             }
-            
-            
-
             Container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(Container));
 

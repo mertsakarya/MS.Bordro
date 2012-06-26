@@ -1,10 +1,11 @@
-﻿using System.Data.Entity;
+﻿using System.Configuration;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using MS.Bordro.Infrastructure;
+using MS.Bordro.Repositories.DB;
 using MS.Bordro.Web.Helpers;
 
 namespace MS.Bordro.Web
@@ -38,8 +39,10 @@ namespace MS.Bordro.Web
 
         protected void Application_Start()
         {
+            string configurationDataFilename = Server.MapPath(ConfigurationManager.AppSettings["ConfigurationDataFilename"]);
+
             Database.DefaultConnectionFactory = new SqlCeConnectionFactory("System.Data.SqlServerCe.4.0");
-            Database.SetInitializer(new BordroContextInitializer());
+            Database.SetInitializer(new BordroContextInitializer(configurationDataFilename));
 
             ModelMetadataProviders.Current = new BordroMetadataProvider();
             DependencyHelper.RegisterDependencies();

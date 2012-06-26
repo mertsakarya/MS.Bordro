@@ -1,19 +1,18 @@
 ﻿using System.Collections.Generic;
-using MS.Bordro.Repositories.DB;
 
-namespace MS.Bordro.Infrastructure
+namespace MS.Bordro.Repositories.DB
 {
     public static class ReloadResources
     {
-        public static void Reset(BordroDbContext dbContext)
+        public static void Reset(string configurationDataFilename, BordroDbContext dbContext)
         {
             Delete(dbContext);
-            Set(dbContext);
+            Set(configurationDataFilename, dbContext);
         }
 
-        public static List<string> Set(BordroDbContext dbContext)
+        public static List<string> Set(string configurationDataFilename, BordroDbContext dbContext)
         {
-            var parser = new ConfigParser(dbContext);
+            var parser = new ConfigParser(configurationDataFilename, dbContext);
             return parser.Parse();
         }
 

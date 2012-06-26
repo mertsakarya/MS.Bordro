@@ -1,0 +1,16 @@
+﻿@using MS.Bordro.Infrastructure.Exceptions.Web
+@model HandleErrorInfo
+@{ ViewBag.Title = "Web site error"; }
+
+<hgroup class="title">
+    <h1 class="error">An error occurred while processing your request.</h1><br/>
+    <pre>@Model.Exception.Message
+    @if(Model.Exception is BordroNotAllowedException) {
+        var ex = Model.Exception as BordroNotAllowedException;
+<text>
+User: @ex.User     
+</text>
+    }
+    </pre>
+
+</hgroup>

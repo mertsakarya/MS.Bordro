@@ -50,10 +50,13 @@
     <Compile Include="Base\BaseGuidRepositoryDB.cs" />
     <Compile Include="Base\BaseRepositoryDB.cs" />
     <Compile Include="Base\RepositoryHelper.cs" />
+    <Compile Include="BordroContextInitializer.cs" />
     <Compile Include="BordroDbContext.cs" />
+    <Compile Include="ConfigParser.cs" />
     <Compile Include="ConfigurationDataRepositoryDB.cs" />
     <Compile Include="IBordroDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReloadResources.cs" />
     <Compile Include="ResourceLookupRepositoryDB.cs" />
     <Compile Include="ResourceRepositoryDB.cs" />
     <Compile Include="UserRepositoryDB.cs" />

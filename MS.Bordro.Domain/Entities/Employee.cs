@@ -7,12 +7,8 @@ using MS.Bordro.Enumerations;
 
 namespace MS.Bordro.Domain.Entities
 {
-    public class Employee : BaseModel
+    public class Employee : BaseGuidModel
     {
-        public Employee() { Attributes = new List<EmployeeAttribute>(); }
-
-        public List<EmployeeAttribute> Attributes { get; set; }
-
         [Required]
         [MinLength(1), MaxLength(64)]
         public string Name { get; set; }
@@ -35,11 +31,6 @@ namespace MS.Bordro.Domain.Entities
         public override string ToString()
         {
             var str = base.ToString() + String.Format(" | Name: {0} | LastName: {1} | TCId: {2} | Email: {3} | Phone: {4} | Gender: {5} | Type: {6}", Name, LastName, TCId, Email, Phone, Enum.GetName(typeof(Sex), Gender), Enum.GetName(typeof(EmployeeType), EmployeeType));
-            if (Attributes != null && Attributes.Count > 0) {
-                str += "\r\nAttributes: [\r\n";
-                str = Attributes.Aggregate(str, (current, item) => current + ("\t" + item.ToString() + "\r\n"));
-                str += "]";
-            } 
             return str;
         }
     }

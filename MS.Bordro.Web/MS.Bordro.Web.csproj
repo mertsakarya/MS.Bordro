@@ -172,7 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BordroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UtilitiesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -186,6 +188,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\glimpse.readme.txt" />
+    <Content Include="ConfigData\cities15000.txt" />
+    <Content Include="ConfigData\cities5000.txt" />
+    <Content Include="ConfigData\ConfigurationData.txt" />
+    <Content Include="ConfigData\countryInfo.txt" />
+    <Content Include="ConfigData\Database.sql" />
+    <Content Include="ConfigData\iso-languagecodes.txt" />
+    <Content Include="ConfigData\timeZones.txt" />
     <Content Include="Content\Bootstrap\bootstrap-image-gallery.min.css" />
     <Content Include="Content\Bootstrap\bootstrap-image-gallery.min.js" />
     <Content Include="Content\Bootstrap\bootstrap-responsive.min.css" />
@@ -298,6 +307,8 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <None Include="Content\screen._css__" />
+    <Content Include="Views\Utilities\Index.cshtml" />
+    <Content Include="Views\Shared\BordroError.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -397,7 +408,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>55250</DevelopmentServerPort>
+          <DevelopmentServerPort>13849</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

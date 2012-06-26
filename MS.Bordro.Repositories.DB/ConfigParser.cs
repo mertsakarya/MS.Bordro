@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Web;
 using MS.Bordro.Domain.Entities;
-using MS.Bordro.Repositories.DB;
 
-namespace MS.Bordro.Infrastructure
+namespace MS.Bordro.Repositories.DB
 {
     public class ConfigParser
     {
+        private readonly string _configurationDataFilename;
+
         protected enum Section
         {
             None = 0,
@@ -83,12 +83,11 @@ namespace MS.Bordro.Infrastructure
         }
 
         private readonly Dictionary<Section, ConfigurationType> _dependencies;
-        private static readonly string Root = HttpContext.Current.Server.MapPath(@"~\ConfigData\");
-        private static readonly string ConfigurationFilename = Root + @"ConfigurationData.txt";
         //private static readonly string GeoNamesFilename = root + @"allCountries.txt";
 
-        public ConfigParser(BordroDbContext dbContext)
+        public ConfigParser(string configurationDataFilename, IBordroDbContext dbContext)
         {
+            _configurationDataFilename = configurationDataFilename;
             var configurationData = new ConfigurationType(Section.Configuration) {
                                                                                      Repository = new ConfigurationDataRepositoryDB(dbContext),
                                                                                      MinimumAllowed = 2,
@@ -126,7 +125,7 @@ namespace MS.Bordro.Infrastructure
             var result = new List<string>();
             var mode = Section.Start;
             var line = 0;
-            using (var stream = new StreamReader(ConfigurationFilename)) {
+            using (var stream = new StreamReader(_configurationDataFilename)) {
                 while (!stream.EndOfStream) {
                     string text = stream.ReadLine();
                     line++;

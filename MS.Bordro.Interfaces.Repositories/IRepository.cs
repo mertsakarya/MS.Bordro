@@ -11,11 +11,11 @@ namespace MS.Bordro.Interfaces.Repositories
         IList<T> GetAll(out int total);
         IList<T> GetAll(out int total, int pageNo, int pageSize);
 
-        IList<T> Query(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByClause, bool ascending, params Expression<Func<T, object>>[] includeExpressionParams);
-        IList<T> Query<TKey>(Expression<Func<T, bool>> filter, int pageNo, int pageSize, out int total, Expression<Func<T, TKey>> orderByClause, bool ascending, params Expression<Func<T, object>>[] includeExpressionParams);
+        IList<T> Query(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByClause, bool ascending, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams);
+        IList<T> Query<TKey>(Expression<Func<T, bool>> filter, int pageNo, int pageSize, out int total, Expression<Func<T, TKey>> orderByClause, bool ascending, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams);
 
-        T Single(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeExpressionParams);
-        T SingleAttached(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeExpressionParams);
+        T Single(Expression<Func<T, bool>> filter, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams);
+        T SingleAttached(Expression<Func<T, bool>> filter, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams);
 
         T Add(T entity);
         T FullUpdate(T entity);

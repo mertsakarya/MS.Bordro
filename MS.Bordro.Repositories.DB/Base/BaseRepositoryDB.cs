@@ -29,7 +29,7 @@ namespace MS.Bordro.Repositories.DB.Base
 
         public T GetById(long id, params Expression<Func<T, object>>[] includeExpressionParams)
         {
-            return Single(p => p.Id == id, includeExpressionParams);
+            return Single(p => p.Id == id, false, includeExpressionParams);
         }
 
         public IList<T> GetAll(out int total)
@@ -47,41 +47,41 @@ namespace MS.Bordro.Repositories.DB.Base
             return q.OrderByDescending(p => p.Id).Skip((pageNo - 1)*pageSize).Take(pageSize).ToList();
         }
 
-        public IList<T> Query(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByClause, bool ascending, params Expression<Func<T, object>>[] includeExpressionParams)
+        public IList<T> Query(Expression<Func<T, bool>> filter, Expression<Func<T, object>> orderByClause, bool ascending, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams)
         {
 #if DEBUG
             logger.Info(String.Format("Query<{0}>({1}, {2})", typeof(T).Name, filter, orderByClause));
 #endif
-            IQueryable<T> q = RepositoryHelper.Query(QueryableRepository, filter, includeExpressionParams);
+            IQueryable<T> q = RepositoryHelper.Query(QueryableRepository, filter, includeDeleted, includeExpressionParams);
             if (orderByClause != null) q = (ascending) ? q.OrderBy(orderByClause) : q.OrderByDescending(orderByClause);
             return q.ToList();
         }
 
-        public IList<T> Query<TKey>(Expression<Func<T, bool>> filter, int pageNo, int pageSize, out int total, Expression<Func<T, TKey>> orderByClause, bool ascending, params Expression<Func<T, object>>[] includeExpressionParams)
+        public IList<T> Query<TKey>(Expression<Func<T, bool>> filter, int pageNo, int pageSize, out int total, Expression<Func<T, TKey>> orderByClause, bool ascending, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams)
         {
 #if DEBUG
             logger.Info(String.Format("Query<{0}>({1}, {2}, {3}, {4})", typeof(T).Name, filter, pageNo, pageSize, orderByClause));
 #endif
-            IQueryable<T> q = RepositoryHelper.Query(QueryableRepository, filter, includeExpressionParams);
+            IQueryable<T> q = RepositoryHelper.Query(QueryableRepository, filter, includeDeleted, includeExpressionParams);
             total = q.Count();
             if (orderByClause != null) q = (ascending) ? q.OrderBy(orderByClause) : q.OrderByDescending(orderByClause);
             return q.Skip((pageNo - 1) * pageSize).Take( pageSize ).ToList();
         }
 
-        public T Single(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeExpressionParams)
+        public T Single(Expression<Func<T, bool>> filter, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams)
         {
 #if DEBUG
             logger.Info(String.Format("Single<{0}>({1})", typeof(T), filter));
 #endif            
-            return RepositoryHelper.Query(QueryableRepository, filter, includeExpressionParams).FirstOrDefault();
+            return RepositoryHelper.Query(QueryableRepository, filter, includeDeleted, includeExpressionParams).FirstOrDefault();
         }
 
-        public T SingleAttached(Expression<Func<T, bool>> filter, params Expression<Func<T, object>>[] includeExpressionParams)
+        public T SingleAttached(Expression<Func<T, bool>> filter, bool includeDeleted = false, params Expression<Func<T, object>>[] includeExpressionParams)
         {
 #if DEBUG
             logger.Info(String.Format("SingleAttached<{0}>({1})", typeof(T).Name, filter));
 #endif
-            return RepositoryHelper.Query(DbContext.Set<T>().Where(p => !p.Deleted).AsQueryable(), filter, includeExpressionParams).FirstOrDefault();
+            return RepositoryHelper.Query(DbContext.Set<T>().Where(p => !p.Deleted).AsQueryable(), filter, includeDeleted, includeExpressionParams).FirstOrDefault();
         }
 
         public T Add(T entity)

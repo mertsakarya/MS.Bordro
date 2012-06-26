@@ -1,4 +1,5 @@
 ﻿using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using MS.Bordro.Domain.Entities;
 
 namespace MS.Bordro.Repositories.DB
@@ -6,6 +7,7 @@ namespace MS.Bordro.Repositories.DB
 
     public class BordroDbContext : DbContext, IBordroDbContext
     {
+
         public DbSet<Company> Companies { get; set; }
         public DbSet<CompanyAttribute> CompanyAttributes { get; set; }
         public DbSet<CompanyLocation> CompanyLocations { get; set; }
@@ -25,6 +27,8 @@ namespace MS.Bordro.Repositories.DB
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            //http://stackoverflow.com/questions/5532810/entity-framework-code-first-defining-relationships-keys
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();   
         //    modelBuilder.Entity<Profile>()
         //                .HasMany(u => u.SentMessages)
         //                .WithRequired(ul => ul.From)

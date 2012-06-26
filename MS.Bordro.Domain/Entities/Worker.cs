@@ -5,7 +5,7 @@ using MS.Bordro.Enumerations;
 
 namespace MS.Bordro.Domain.Entities
 {
-    public class Worker : BaseGuidModel
+    public class Worker : BaseModel
     {
         [Required]
         public long EmployeeId { get; set; }

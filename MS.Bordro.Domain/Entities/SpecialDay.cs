@@ -4,7 +4,7 @@ using MS.Bordro.Domain.Entities.BaseEntities;
 
 namespace MS.Bordro.Domain.Entities
 {
-    public class SpecialDay : BaseModel
+    public class SpecialDay : BaseGuidModel
     {
         [Required]
         public DateTime Date { get; set; }

@@ -31,6 +31,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,6 +44,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceService.cs" />
     <Compile Include="UserService.cs" />
+    <Compile Include="UtilityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MS.Bordro.Domain\MS.Bordro.Domain.csproj">
@@ -64,6 +66,10 @@
     <ProjectReference Include="..\MS.Bordro.Interfaces.Services\MS.Bordro.Interfaces.Services.csproj">
       <Project>{CF3E3A86-5ED9-4998-B1C0-0199895AF539}</Project>
       <Name>MS.Bordro.Interfaces.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MS.Bordro.Repositories.DB\MS.Bordro.Repositories.DB.csproj">
+      <Project>{1009F7D3-2F1C-4161-B6B7-E0C295D4DFA6}</Project>
+      <Name>MS.Bordro.Repositories.DB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
