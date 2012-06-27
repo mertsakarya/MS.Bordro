@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MS.Bordro.Web.Models.CompanyModel>
+﻿@model MS.Bordro.Web.ViewModels.CompanyIndexModel
 
 @{
     ViewBag.Title = "Index";
@@ -7,32 +7,27 @@
  
 <h2>Index</h2>
 
-@(
-    Html.Telerik().Grid(Model)
+@(Html.Telerik().Grid(Model.CompaniesModel)
         .Name("CompaniesGrid")
-            .Editable(editing => editing.Mode(GridEditMode.InCell))
-
+        .Editable(editing => editing.Mode(GridEditMode.InLine))
         .DataBinding(dataBinding => dataBinding
-            //Ajax binding
-        .Ajax()
-            //Home.Index renders the grid initially
-                .Select("IndexAjax", "Company")
-            //Home.Insert inserts a new data record
-                .Insert("Insert", "Company")
-            //Home.Update updates an existing data record
-                .Update("Update", "Company")
-            //Home.Delete deletes an existing data record
-                .Delete("Delete", "Company")
+                                        .Ajax().OperationMode(GridOperationMode.Client)
+                                        .Select("IndexAjax", "Company")
+                                        .Insert("Insert", "Company")
+                                        .Update("Update", "Company")
+                                        .Delete("Delete", "Company")
         )
         .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
         .ToolBar(commands => commands.Insert())
         .Columns(columns => {
-            columns.Bound(o => o.Name);
-            columns.Command(commands => commands.Edit());
-            columns.Command(commands => commands.Delete());
-        })
-        .Pageable()
-        .Sortable()
-)
+                     columns.Bound(o => o.Name);
+                     columns.Command(commands => { commands.Edit(); commands.Delete(); });
+                 })
+        .Pageable(pager => { 
+                      pager.Total(Model.Total);
+                      pager.Style(GridPagerStyles.PageInput | GridPagerStyles.Numeric);
+                  })
+        .Sortable())
 
 
+    

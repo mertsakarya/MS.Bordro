@@ -384,6 +384,7 @@
     <Compile Include="Models\WorkerModel.cs" />
     <Compile Include="Models\WorkRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CompanyViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Readme\glimpse.readme.txt" />

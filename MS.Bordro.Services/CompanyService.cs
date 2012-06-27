@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using MS.Bordro.Domain.Entities;
-using MS.Bordro.Enumerations;
 using MS.Bordro.Infrastructure.Cache;
 using MS.Bordro.Interfaces.Repositories;
 using MS.Bordro.Interfaces.Services;
@@ -23,5 +21,10 @@ namespace MS.Bordro.Services
         {
            return _repository.GetAll(out total);
         }
+
+        public void Add(Company company) { _repository.Add(company); _repository.Save(); }
+        public Company GetById(long id) { return _repository.GetById(id); }
+        public void Update(Company company) { _repository.FullUpdate(company); _repository.Save(); }
+        public void Delete(Company company) { _repository.SoftDelete(company); _repository.Save(); }
     }
 }

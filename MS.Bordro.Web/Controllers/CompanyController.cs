@@ -4,8 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using MS.Bordro.Domain.Entities;
 using MS.Bordro.Interfaces.Services;
 using MS.Bordro.Web.Models;
+using MS.Bordro.Web.ViewModels;
+using Telerik.Web.Mvc;
 
 namespace MS.Bordro.Web.Controllers
 {
@@ -22,93 +25,57 @@ namespace MS.Bordro.Web.Controllers
             int total;
             var companies = _companyService.GetAll(out total);
             var companiesModel = Mapper.Map<IList<CompanyModel>>(companies);
-            return View(companiesModel);
+            var companyIndexModel = new CompanyIndexModel { CompaniesModel = companiesModel, Total = total };
+            return View(companyIndexModel);
         }
 
-        //
-        // GET: /Default1/Details/5
-
-        public ActionResult Details(int id)
+        [GridAction]
+        public ActionResult IndexAjax()
         {
-            return View();
+            int total;
+            var companies = _companyService.GetAll(out total);
+            var companiesModel = Mapper.Map<IList<CompanyModel>>(companies);
+            return View(new GridModel(companiesModel));
         }
-
-        //
-        // GET: /Default1/Create
-
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Default1/Create
 
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        [GridAction]
+        public ActionResult Insert()
         {
-            try
-            {
-                // TODO: Add insert logic here
+            CompanyModel model = new CompanyModel();
 
-                return RedirectToAction("Index");
+            if (TryUpdateModel(model)) {
+                var data = Mapper.Map<Company>(model);
+                _companyService.Add(data);
             }
-            catch
-            {
-                return View();
-            }
+            return IndexAjax();
         }
-
-        //
-        // GET: /Default1/Edit/5
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Default1/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        [GridAction]
+        public ActionResult Update(long id)
         {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+            var data = _companyService.GetById(id);
+            if (data != null) {
+                var model = Mapper.Map<CompanyModel>(data);
+                if (TryUpdateModel(model)) {
+                    data = Mapper.Map<Company>(model);
+                    _companyService.Update(data);
+                }
             }
-            catch
-            {
-                return View();
-            }
+            return IndexAjax();
         }
-
-        //
-        // GET: /Default1/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Default1/Delete/5
 
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [GridAction]
+        public ActionResult Delete(long id)
         {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+            var data = _companyService.GetById(id);
+            if (data != null) {
+                _companyService.Delete(data);
             }
-            catch
-            {
-                return View();
-            }
+            return IndexAjax();
         }
+
     }
 }
