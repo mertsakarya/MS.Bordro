@@ -33,8 +33,7 @@ namespace MS.Bordro.Domain.Entities
         public long ReturningId { get; set; }
         public RouteInformation Returning { get; set; }
 
-        public decimal Cost { get; set; }
-        public decimal Sale { get; set; }
+        public Money Money { get; set; }
 
         public byte State { get; set; }
 

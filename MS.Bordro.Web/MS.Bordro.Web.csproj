@@ -174,6 +174,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\GridLocalization.tr-TR.designer.cs">
+      <DependentUpon>GridLocalization.tr-TR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\EditorLocalization.bg-BG.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -362,6 +367,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BordroController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
+    <Compile Include="Controllers\CompanyLocationController.cs" />
+    <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UtilitiesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -376,9 +383,10 @@
     <Compile Include="Models\BaseEntities\BaseGuidModel.cs" />
     <Compile Include="Models\BaseEntities\BaseModel.cs" />
     <Compile Include="Models\BaseEntities\IdModel.cs" />
-    <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\CompanyLocationModel.cs" />
+    <Compile Include="Models\CompanyModel.cs" />
     <Compile Include="Models\EmployeeModel.cs" />
+    <Compile Include="Models\MoneyModel.cs" />
     <Compile Include="Models\RouteInformationModel.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Models\WorkerModel.cs" />
@@ -740,6 +748,9 @@
     <Content Include="Views\Utilities\Index.cshtml" />
     <Content Include="Views\Shared\BordroError.cshtml" />
     <Content Include="Views\Company\Index.cshtml" />
+    <Compile Include="ViewModels\PagedList.cs" />
+    <Compile Include="ViewModels\IPagedList.cs" />
+    <Compile Include="ViewModels\PagingInformationModel.cs" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
@@ -1044,6 +1055,12 @@
       <LastGenOutput>EditorLocalization.bg-BG.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\GridLocalization.tr-TR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>GridLocalization.tr-TR.designer.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -1061,7 +1078,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>13849</DevelopmentServerPort>
+          <DevelopmentServerPort>59087</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

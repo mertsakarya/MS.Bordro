@@ -20,8 +20,7 @@ namespace MS.Bordro.Web.Models
         public TimeSpan StartTime { get; set; }
         public TimeSpan EndTime { get; set; }
 
-        public decimal Cost { get; set; }
-        public decimal Sale { get; set; }
+        public MoneyModel Money { get; set; }
 
         public string Notes { get; set; }
 

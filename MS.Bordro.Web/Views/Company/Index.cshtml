@@ -1,33 +1,71 @@
-﻿@model MS.Bordro.Web.ViewModels.CompanyIndexModel
+﻿@using MS.Bordro.Web.Models
+@using MS.Bordro.Web.ViewModels
+@model IPagedList<CompanyModel>
 
 @{
+
+
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
  
-<h2>Index</h2>
+<h2>Companies Index</h2>
 
-@(Html.Telerik().Grid(Model.CompaniesModel)
-        .Name("CompaniesGrid")
-        .Editable(editing => editing.Mode(GridEditMode.InLine))
-        .DataBinding(dataBinding => dataBinding
-                                        .Ajax().OperationMode(GridOperationMode.Client)
-                                        .Select("IndexAjax", "Company")
-                                        .Insert("Insert", "Company")
-                                        .Update("Update", "Company")
-                                        .Delete("Delete", "Company")
+@(Html.Telerik().Grid(Model.Items)
+    .Name("CompaniesGrid")
+    .DataBinding(dataBinding => dataBinding
+        .Ajax()
+        .Select("IndexAjax", "Company")
+        .Insert("Insert", "Company")
+        .Update("Update", "Company")
+        .Delete("Delete", "Company")
+    )
+    .DetailView(detailView => detailView.ClientTemplate(
+        Html.Telerik().Grid<CompanyLocationModel>()
+            .ToolBar(commands => commands.Insert())
+            .Editable(editing => editing.Mode(GridEditMode.InLine))
+            .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
+            .Name("Locations_<#= Id#>")
+            .DataBinding(dataBinding => dataBinding
+                .Ajax()
+                .Select("IndexByKeyAjax", "CompanyLocation", new { Id = "<#= Id #>" })
+                .Insert("Insert", "CompanyLocation", new { CompanyId = "<#= Id #>" })
+                .Update("Update", "CompanyLocation")
+                .Delete("Delete", "CompanyLocation")
+            )
+            .Columns(columns => {
+                columns.Bound(o => o.Name);
+                columns.Bound(o => o.Address);
+                columns.Bound(o => o.CommunicationName);
+                columns.Bound(o => o.CommunicationPhone).Width(200);
+                columns.Bound(o => o.CreationDate).Format("{0:d}");
+                columns.Command(commands => { commands.Edit(); commands.Delete(); });
+            })
+            .Pageable()
+            .Sortable()
+            .Filterable()
+            .ToHtmlString()
         )
-        .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
-        .ToolBar(commands => commands.Insert())
-        .Columns(columns => {
-                     columns.Bound(o => o.Name);
-                     columns.Command(commands => { commands.Edit(); commands.Delete(); });
-                 })
-        .Pageable(pager => { 
-                      pager.Total(Model.Total);
-                      pager.Style(GridPagerStyles.PageInput | GridPagerStyles.Numeric);
-                  })
-        .Sortable())
+    )
+    .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
+    .ToolBar(commands => commands.Insert())
+    .Editable(editing => editing.Mode(GridEditMode.InLine))
+    .Columns(columns => {
+        columns.Bound(o => o.Name);
+        columns.Command(commands => { commands.Edit(); commands.Delete(); });
+    })
+    .Pageable(settings => {
+        settings.Enabled(true);
+        settings.Total(Model.TotalRecords);
+        settings.PageTo(Model.Page);
+        settings.PageSize(Model.PageSize);
+        settings.Position(GridPagerPosition.Bottom);
+        settings.Style(GridPagerStyles.PageInput | GridPagerStyles.Numeric | GridPagerStyles.NextPreviousAndDropDown);
+    })
+    .Sortable()
+    .Footer(true) 
+    .EnableCustomBinding(true)
+)
 
 
     

@@ -33,8 +33,7 @@ namespace MS.Bordro.Web.Models
         public long ReturningId { get; set; }
         public RouteInformationModel Returning { get; set; }
 
-        public decimal Cost { get; set; }
-        public decimal Sale { get; set; }
+        public MoneyModel Money { get; set; }
 
         public byte State { get; set; }
 

@@ -22,8 +22,7 @@ namespace MS.Bordro.Domain.Entities
         public int StartKilometers { get; set; }
         public int EndKilometers { get; set; }
 
-        public decimal Cost { get; set; }
-        public decimal Sale { get; set; }
+        public Money Money { get; set; }
 
         public byte State { get; set; }
 

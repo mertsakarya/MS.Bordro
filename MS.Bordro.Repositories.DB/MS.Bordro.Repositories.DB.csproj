@@ -55,6 +55,7 @@
     <Compile Include="ConfigParser.cs" />
     <Compile Include="ConfigurationDataRepositoryDB.cs" />
     <Compile Include="CompanyRepositoryDB.cs" />
+    <Compile Include="CompanyLocationRepositoryDB.cs" />
     <Compile Include="IBordroDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReloadResources.cs" />

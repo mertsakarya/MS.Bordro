@@ -2,7 +2,7 @@
 
 namespace MS.Bordro.Interfaces.Services
 {
-    public interface ICompanyService : IGridService<Company>
+    public interface ICompanyLocationService : IDetailGridService<CompanyLocation>
     {
 
     }

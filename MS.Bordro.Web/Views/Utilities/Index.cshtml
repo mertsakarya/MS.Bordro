@@ -5,5 +5,7 @@
 <hr/>
 <ul>
     <li>@Html.ActionLink("Initialize Lookups", "InitConfiguration", "Utilities")</li>
-    <li>@Html.ActionLink("Clear Database and Raven", "ClearDatabase", "Utilities", null, null)</li>
+    <li>@Html.ActionLink("Clear Database", "ClearDatabase", "Utilities", null, null)</li>
+    <hr />
+    <li>@Html.ActionLink("Create Companies", "GenerateCompanies", "Utilities", new { key = 50, extra = 0 }, null)</li>
 </ul>

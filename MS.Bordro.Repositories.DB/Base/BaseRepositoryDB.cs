@@ -20,7 +20,6 @@ namespace MS.Bordro.Repositories.DB.Base
             get { return DbContext.Set<T>().Where(p => !p.Deleted).AsQueryable().AsNoTracking(); }
         }
 
-
         protected BaseRepositoryDB(IBordroDbContext context)
         {
             var dbContext = context as DbContext;
@@ -135,5 +134,12 @@ namespace MS.Bordro.Repositories.DB.Base
             DbContext.SaveChanges();
         }
     }
+
+    public abstract class BaseDetailRepositoryDB<T> : BaseRepositoryDB<T>, IDetailRepository<T> where T : BaseModel
+    {
+        protected BaseDetailRepositoryDB(IBordroDbContext context) : base(context) { }
+        public abstract IList<T> GetAllByKey<TKey>(long id, out int total, int pageNo, int pageSize, Expression<Func<T, TKey>> orderByClause, bool @ascending);
+    }
+
 }
 

@@ -16,6 +16,7 @@ namespace MS.Bordro.Web.Helpers
             Mapper.CreateMap<Vehicle, VehicleModel>();
             Mapper.CreateMap<Worker, WorkerModel>();
             Mapper.CreateMap<WorkRequest, WorkRequestModel>();
+            Mapper.CreateMap<Money, MoneyModel>();
 
             Mapper.CreateMap<CompanyModel, Company>();
             Mapper.CreateMap<CompanyLocationModel, CompanyLocation>();
@@ -24,6 +25,7 @@ namespace MS.Bordro.Web.Helpers
             Mapper.CreateMap<VehicleModel, Vehicle>();
             Mapper.CreateMap<WorkerModel, Worker>();
             Mapper.CreateMap<WorkRequestModel, WorkRequest>();
+            Mapper.CreateMap<MoneyModel, Money>();
 
             //Mapper.CreateMap<Profile, ProfileModel>();
             //Mapper.CreateMap<ProfileModel, Profile>()

@@ -17,9 +17,9 @@ namespace MS.Bordro.Services
             _bordroGlobalCache = globalCacheContext;
         }
 
-        public IList<Company> GetAll(out int total)
+        public IList<Company> GetAll(out int total, int page, int pageSize)
         {
-           return _repository.GetAll(out total);
+           return _repository.GetAll(out total, page, pageSize);
         }
 
         public void Add(Company company) { _repository.Add(company); _repository.Save(); }

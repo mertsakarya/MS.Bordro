@@ -56,6 +56,7 @@
     <Compile Include="Entities\Company.cs" />
     <Compile Include="Entities\ConfigurationData.cs" />
     <Compile Include="Entities\CompanyLocation.cs" />
+    <Compile Include="Entities\Money.cs" />
     <Compile Include="Entities\RouteInformation.cs" />
     <Compile Include="Entities\Vehicle.cs" />
     <Compile Include="Entities\Resource.cs" />
