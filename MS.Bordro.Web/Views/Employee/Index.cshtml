@@ -1,0 +1,44 @@
+﻿@using MS.Bordro.Web.Models
+@using MS.Bordro.Web.ViewModels
+@model IPagedList<EmployeeModel>
+
+@{
+    ViewBag.Title = "Employees";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+ 
+<h2>Employees</h2>
+
+@(Html.Telerik().Grid(Model.Items)
+    .Name("EmployeesGrid")
+    .DataBinding(dataBinding => dataBinding
+        .Ajax()
+        .Select("IndexAjax", "Employee")
+        .Insert("Insert", "Employee")
+        .Update("Update", "Employee")
+        .Delete("Delete", "Employee")
+    )
+    .DataKeys(dataKeys => dataKeys.Add(c => c.Id))
+    .ToolBar(commands => commands.Insert())
+    .Editable(editing => editing.Mode(GridEditMode.InLine))
+    .Columns(columns => {
+        columns.Bound(o => o.TCId);
+        columns.Bound(o => o.Name);
+        columns.Bound(o => o.LastName);
+        columns.Bound(o => o.Gender);
+        columns.Bound(o => o.Cost);
+        columns.Command(commands => { commands.Edit(); commands.Delete(); });
+    })
+    .Pageable(settings => {
+        settings.Enabled(true);
+        settings.Total(Model.TotalRecords);
+        settings.PageTo(Model.Page);
+        settings.PageSize(Model.PageSize);
+        settings.Position(GridPagerPosition.Bottom);
+        settings.Style(GridPagerStyles.PageInput | GridPagerStyles.Numeric | GridPagerStyles.NextPreviousAndDropDown);
+    })
+    .Sortable()
+    .Footer(true) 
+    .EnableCustomBinding(true)
+)
+  

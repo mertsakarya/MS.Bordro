@@ -1,30 +1,12 @@
-﻿using System.Collections.Generic;
-using MS.Bordro.Domain.Entities;
+﻿using MS.Bordro.Domain.Entities;
 using MS.Bordro.Infrastructure.Cache;
 using MS.Bordro.Interfaces.Repositories;
 using MS.Bordro.Interfaces.Services;
 
 namespace MS.Bordro.Services
 {
-    public class CompanyService : ICompanyService
+    public class CompanyService : BaseGridRepositoryService<Company>, ICompanyService
     {
-        private readonly ICompanyRepositoryDB _repository;
-        private readonly IBordroGlobalCacheContext _bordroGlobalCache;
-
-        public CompanyService(ICompanyRepositoryDB repository, IBordroGlobalCacheContext globalCacheContext)
-        {
-            _repository = repository;
-            _bordroGlobalCache = globalCacheContext;
-        }
-
-        public IList<Company> GetAll(out int total, int page, int pageSize)
-        {
-           return _repository.GetAll(out total, page, pageSize);
-        }
-
-        public void Add(Company company) { _repository.Add(company); _repository.Save(); }
-        public Company GetById(long id) { return _repository.GetById(id); }
-        public void Update(Company company) { _repository.FullUpdate(company); _repository.Save(); }
-        public void Delete(Company company) { _repository.SoftDelete(company); _repository.Save(); }
+        public CompanyService(ICompanyRepositoryDB repository, IBordroGlobalCacheContext globalCacheContext) : base(repository, globalCacheContext) {}
     }
 }

@@ -40,6 +40,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IVehicleRepositoryDB.cs" />
+    <Compile Include="IWorkRequestRepositoryDB.cs" />
+    <Compile Include="IEmployeeRepositoryDB.cs" />
     <Compile Include="ICompanyLocationRepositoryDB.cs" />
     <Compile Include="ICompanyRepositoryDB.cs" />
     <Compile Include="IConfigurationDataRepository.cs" />

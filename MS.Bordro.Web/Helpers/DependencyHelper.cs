@@ -31,7 +31,13 @@ namespace MS.Bordro.Web.Helpers
             builder.RegisterType<CompanyRepositoryDB>().As<ICompanyRepositoryDB>().InstancePerHttpRequest();
             builder.RegisterType<CompanyLocationRepositoryDB>().As<ICompanyLocationRepositoryDB>().InstancePerHttpRequest();
             builder.RegisterType<UserRepositoryDB>().As<IUserRepositoryDB>().InstancePerHttpRequest();
+            builder.RegisterType<EmployeeRepositoryDB>().As<IEmployeeRepositoryDB>().InstancePerHttpRequest();
+            builder.RegisterType<WorkRequestRepositoryDB>().As<IWorkRequestRepositoryDB>().InstancePerHttpRequest();
+            builder.RegisterType<VehicleRepositoryDB>().As<IVehicleRepositoryDB>().InstancePerHttpRequest();
 
+            builder.RegisterType<VehicleService>().As<IVehicleService>().InstancePerHttpRequest();
+            builder.RegisterType<WorkRequestService>().As<IWorkRequestService>().InstancePerHttpRequest();
+            builder.RegisterType<EmployeeService>().As<IEmployeeService>().InstancePerHttpRequest();
             builder.RegisterType<UserService>().As<IUserService>().InstancePerHttpRequest();
             builder.RegisterType<UtilityService>().As<IUtilityService>().InstancePerHttpRequest();
             builder.RegisterType<SamplesService>().As<ISamplesService>().InstancePerHttpRequest();

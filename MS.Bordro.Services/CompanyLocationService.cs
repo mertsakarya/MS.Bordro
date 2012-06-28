@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using MS.Bordro.Domain.Entities;
+﻿using MS.Bordro.Domain.Entities;
 using MS.Bordro.Infrastructure.Cache;
 using MS.Bordro.Interfaces.Repositories;
 using MS.Bordro.Interfaces.Services;

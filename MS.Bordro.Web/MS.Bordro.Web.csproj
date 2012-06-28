@@ -368,6 +368,9 @@
     <Compile Include="Controllers\BordroController.cs" />
     <Compile Include="Controllers\CompanyController.cs" />
     <Compile Include="Controllers\CompanyLocationController.cs" />
+    <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="Controllers\WorkRequestController.cs" />
+    <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\GridController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UtilitiesController.cs" />
@@ -751,6 +754,9 @@
     <Compile Include="ViewModels\PagedList.cs" />
     <Compile Include="ViewModels\IPagedList.cs" />
     <Compile Include="ViewModels\PagingInformationModel.cs" />
+    <Content Include="Views\Employee\Index.cshtml" />
+    <Content Include="Views\WorkRequest\Index.cshtml" />
+    <Content Include="Views\Vehicle\Index.cshtml" />
     <None Include="_bin_deployableAssemblies\x86\sqlcese40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceqp40.dll" />
     <None Include="_bin_deployableAssemblies\x86\sqlceme40.dll" />
